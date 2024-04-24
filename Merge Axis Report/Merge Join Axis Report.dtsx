@@ -1,0 +1,2478 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/11/2024 9:11:14 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MXMTYM0LT228"
+  DTS:CreatorName="JABIL\3136228"
+  DTS:DTSID="{1B2B723A-CC15-4E3C-8057-DC13A091D417}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5228.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Merge Join Axis Report"
+  DTS:PackageType="5"
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{8F700F3E-6CE5-4BE8-AACA-017B4AC1D2EB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{95DC8D31-B052-4DBA-B778-CB88C3ACEE3A}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\3136228\OneDrive - Jabil\Documents\AxisReport\Info completed.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[JEMsinfo]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{41B7DB1B-5624-4205-855F-288A3A73D581}"
+      DTS:ObjectName="JEMsinfo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\3136228\OneDrive - Jabil\Documents\AxisReport\info de Jems.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SAP info]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{B22DAFC6-762E-4A24-96BE-623AD2AA5073}"
+      DTS:ObjectName="SAP info">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\3136228\OneDrive - Jabil\Documents\AxisReport\SAP info source.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Merge Join"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DB454958-BA75-45E5-91EF-16AE35D0F20B}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Merge Join">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Merge Join\Excel Destination"
+              componentClassID="Microsoft.ExcelDestination"
+              contactInfo="Excel Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Excel Destination"
+              name="Excel Destination"
+              usesDispositions="true">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Axis info$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge Join\Excel Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Excel Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[EMS Order]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS Order"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS Order]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS Order]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Shipping ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping ID"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Shipping ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Pallet ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Pallet ID"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Pallet ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Pallet ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Shipping Date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping Date"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Shipping Date]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping Date]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Axis PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Axis PO"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Axis PO]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Axis PO]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Component part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component part no"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Component part no]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component part no]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Position]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Position"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Position]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Position]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Manufacturer PN1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer PN1"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer PN]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer PN1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Manufacturer Name1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Name1"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer Name]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Name1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Manufacturer Lot ID1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Lot ID1"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer Lot ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Lot ID1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Manufacturing date1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturing date1"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer date]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturing date1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Supplier PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier PO"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Axis Supplier PO]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Supplier PO]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[EMS internal tracking ID1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS internal tracking ID1"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS internal tracking ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS internal tracking ID1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Assembly ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly ID"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Top Assembly ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Assembly part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly part no"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Top Assembly part no]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly part no]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[EMSOrderID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMSOrderID"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMSOrderID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[File format Revision2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="File format Revision2"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[File format Revision]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[File format Revision2]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].Columns[Component ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component ID"
+                      externalMetadataColumnId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Component ID]"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Shipping Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Shipping Date" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Pallet ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Pallet ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Shipping ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Shipping ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS Order]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS Order" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Axis PO]"
+                      dataType="wstr"
+                      length="255"
+                      name="Axis PO" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Top Assembly ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Top Assembly ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Top Assembly part no]"
+                      dataType="wstr"
+                      length="255"
+                      name="Top Assembly part no" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Component ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Component part no]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component part no" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Component Rev]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component Rev" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Position]"
+                      dataType="wstr"
+                      length="255"
+                      name="Position" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS internal tracking ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer PN]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer PN" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Name" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer Lot ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Lot ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Manufacturer date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer date" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[File format Revision]"
+                      dataType="wstr"
+                      length="255"
+                      name="File format Revision" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input].ExternalColumns[Axis Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      name="Axis Supplier PO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\Excel Destination.Outputs[Excel Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Excel Destination Error Output"
+                  synchronousInputId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge Join\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\Excel Destination.Outputs[Excel Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge Join\JEMS info source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="JEMS info source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge Join\JEMS info source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[JEMsinfo]"
+                  connectionManagerRefId="Package.ConnectionManagers[JEMsinfo]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMS internal tracking ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]"
+                      name="EMS internal tracking ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMSOrderID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMSOrderID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMSOrderID]"
+                      name="EMSOrderID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping Date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Shipping Date]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping Date]"
+                      name="Shipping Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Pallet ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Pallet ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Pallet ID]"
+                      name="Pallet ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS Order]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMS Order]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS Order]"
+                      name="EMS Order"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Axis PO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Axis PO]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Axis PO]"
+                      name="Axis PO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly ID]"
+                      name="Assembly ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly part no]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly part no]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly part no]"
+                      name="Assembly part no"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Position]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Position]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Position]"
+                      name="Position"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component ID]"
+                      name="Component ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[File format Revision2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[File format Revision2]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[File format Revision2]"
+                      name="File format Revision2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly Equipment]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly Equipment]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly Equipment]"
+                      name="Assembly Equipment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly time]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly time]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly time]"
+                      name="Assembly time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly Rev]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly Rev]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly Rev]"
+                      name="Assembly Rev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component Rev]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component Rev]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component Rev]"
+                      name="Component Rev"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component part no]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component part no]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component part no]"
+                      name="Component part no"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Shipping ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping ID]"
+                      name="Shipping ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS internal tracking ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMSOrderID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMSOrderID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Shipping Date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Shipping Date" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Pallet ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Pallet ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Shipping ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Shipping ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[EMS Order]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS Order" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Axis PO]"
+                      dataType="wstr"
+                      length="255"
+                      name="Axis PO" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assembly ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly part no]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assembly part no" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly Rev]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assembly Rev" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component part no]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component part no" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly time]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assembly time" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Assembly Equipment]"
+                      dataType="wstr"
+                      length="255"
+                      name="Assembly Equipment" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Feeder ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Feeder ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Position]"
+                      dataType="wstr"
+                      length="255"
+                      name="Position" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Component Rev]"
+                      dataType="wstr"
+                      length="255"
+                      name="Component Rev" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Name" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Manufacturer PN]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer PN" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Lot ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Lot ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Manufacturing date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturing date" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      name="Supplier PO" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].ExternalColumns[File format Revision2]"
+                      dataType="wstr"
+                      length="255"
+                      name="File format Revision2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMSOrderID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMSOrderID]"
+                      name="EMSOrderID" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Shipping Date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Shipping Date]"
+                      name="Shipping Date" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Pallet ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Pallet ID]"
+                      name="Pallet ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMS Order]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMS Order]"
+                      name="EMS Order" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Axis PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Axis PO]"
+                      name="Axis PO" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly ID]"
+                      name="Assembly ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly part no]"
+                      name="Assembly part no" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component ID]"
+                      name="Component ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Position]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Position]"
+                      name="Position" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[EMS internal tracking ID]"
+                      name="EMS internal tracking ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[File format Revision2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[File format Revision2]"
+                      name="File format Revision2" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly Equipment]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly Equipment]"
+                      name="Assembly Equipment" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly time]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly time]"
+                      name="Assembly time" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly Rev]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Assembly Rev]"
+                      name="Assembly Rev" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component Rev]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component Rev]"
+                      name="Component Rev" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Component part no]"
+                      name="Component part no" />
+                    <outputColumn
+                      refId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Shipping ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Error Output].Columns[Shipping ID]"
+                      name="Shipping ID" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge Join\Merge Join"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+              name="Merge Join"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of join to perform."
+                  name="JoinType"
+                  typeConverter="JoinType">2</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the number of columns in the ordering key."
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the null values are treated as equal values."
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Indicates the requested maximum buffers per input before blocking."
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Left Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[EMS internal tracking ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS internal tracking ID"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS internal tracking ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[EMS Order]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS Order"
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS Order]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Shipping ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping ID"
+                      cachedSortKeyPosition="10"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Pallet ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Pallet ID"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Pallet ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Shipping Date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping Date"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping Date]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[EMSOrderID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMSOrderID"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMSOrderID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Axis PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Axis PO"
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Axis PO]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Assembly ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly ID"
+                      cachedSortKeyPosition="7"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Assembly part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly part no"
+                      cachedSortKeyPosition="8"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly part no]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Component part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component part no"
+                      cachedSortKeyPosition="11"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component part no]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Position]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Position"
+                      cachedSortKeyPosition="13"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Position]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Component ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component ID"
+                      cachedSortKeyPosition="12"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component ID]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[File format Revision2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="File format Revision2"
+                      cachedSortKeyPosition="9"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[File format Revision2]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input]"
+                  hasSideEffects="true"
+                  name="Merge Join Right Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[EMS internal tracking ID1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS internal tracking ID1"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[EMS internal tracking ID1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer Name1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Name1"
+                      cachedSortKeyPosition="2"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Name1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer PN1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer PN1"
+                      cachedSortKeyPosition="3"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer PN1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer Lot ID1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Lot ID1"
+                      cachedSortKeyPosition="4"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Lot ID1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturing date1]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturing date1"
+                      cachedSortKeyPosition="5"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturing date1]" />
+                    <inputColumn
+                      refId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Supplier PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier PO"
+                      cachedSortKeyPosition="6"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Supplier PO]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output]"
+                  isSorted="true"
+                  name="Merge Join Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS Order]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS Order]"
+                      name="EMS Order">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[EMS Order]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping ID]"
+                      name="Shipping ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Shipping ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Pallet ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Pallet ID]"
+                      name="Pallet ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Pallet ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping Date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Shipping Date]"
+                      name="Shipping Date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Shipping Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMSOrderID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMSOrderID]"
+                      name="EMSOrderID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[EMSOrderID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS internal tracking ID1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[EMS internal tracking ID1]"
+                      name="EMS internal tracking ID1"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[EMS internal tracking ID1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Name1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Name1]"
+                      name="Manufacturer Name1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer Name1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer PN1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer PN1]"
+                      name="Manufacturer PN1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer PN1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturing date1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturing date1]"
+                      name="Manufacturing date1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturing date1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Lot ID1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Manufacturer Lot ID1]"
+                      name="Manufacturer Lot ID1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Manufacturer Lot ID1]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Axis PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Axis PO]"
+                      name="Axis PO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Axis PO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly ID]"
+                      name="Assembly ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Assembly ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Assembly part no]"
+                      name="Assembly part no">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Assembly part no]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component part no]"
+                      name="Component part no">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Component part no]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Position]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Position]"
+                      name="Position">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Position]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Supplier PO]"
+                      name="Supplier PO">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Right Input].Columns[Supplier PO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[File format Revision2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[File format Revision2]"
+                      name="File format Revision2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[File format Revision2]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Merge Join.Outputs[Merge Join Output].Columns[Component ID]"
+                      name="Component ID">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="The input column associated with this output column"
+                          name="InputColumnID">#{Package\Merge Join\Merge Join.Inputs[Merge Join Left Input].Columns[Component ID]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge Join\SAP info vendor source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="SAP info vendor source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'SAP info$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Merge Join\SAP info vendor source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SAP info]"
+                  connectionManagerRefId="Package.ConnectionManagers[SAP info]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[EMS internal tracking ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]"
+                      name="EMS internal tracking ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Name]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Name]"
+                      name="Manufacturer Name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer PN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer PN]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer PN]"
+                      name="Manufacturer PN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Lot ID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Lot ID]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Lot ID]"
+                      name="Manufacturer Lot ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturing date]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturing date]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturing date]"
+                      name="Manufacturing date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Supplier PO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Supplier PO]"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Supplier PO]"
+                      name="Supplier PO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="EMS internal tracking ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Name]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Name" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer PN]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer PN" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturer Lot ID]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturer Lot ID" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Manufacturing date]"
+                      dataType="wstr"
+                      length="255"
+                      name="Manufacturing date" />
+                    <externalMetadataColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].ExternalColumns[Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      name="Supplier PO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[EMS internal tracking ID]"
+                      name="EMS internal tracking ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer Name]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer Name]"
+                      name="Manufacturer Name" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer PN]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer PN]"
+                      name="Manufacturer PN" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer Lot ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturer Lot ID]"
+                      name="Manufacturer Lot ID" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturing date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Manufacturing date]"
+                      name="Manufacturing date" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[Supplier PO]"
+                      name="Supplier PO" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge Join\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge Join\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[EMS internal tracking ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS internal tracking ID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[EMSOrderID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMSOrderID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMSOrderID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Shipping Date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping Date"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping Date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Pallet ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Pallet ID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Pallet ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Shipping ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Shipping ID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">10</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[EMS Order]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS Order"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS Order]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Axis PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Axis PO"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Axis PO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Assembly ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly ID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">7</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Assembly part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Assembly part no"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly part no]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">8</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Component part no]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component part no"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component part no]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">11</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Position]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Position"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Position]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">13</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[Component ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Component ID"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">12</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort.Inputs[Sort Input].Columns[File format Revision2]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="File format Revision2"
+                      lineageId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[File format Revision2]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">9</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS internal tracking ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS internal tracking ID]"
+                      name="EMS internal tracking ID"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMSOrderID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMSOrderID]"
+                      name="EMSOrderID"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMSOrderID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping Date]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping Date]"
+                      name="Shipping Date"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping Date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Pallet ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Pallet ID]"
+                      name="Pallet ID"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Pallet ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Shipping ID]"
+                      name="Shipping ID"
+                      sortKeyPosition="10">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Shipping ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS Order]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[EMS Order]"
+                      name="EMS Order"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[EMS Order]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Axis PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Axis PO]"
+                      name="Axis PO"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Axis PO]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly ID]"
+                      name="Assembly ID"
+                      sortKeyPosition="7">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Assembly part no]"
+                      name="Assembly part no"
+                      sortKeyPosition="8">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Assembly part no]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component part no]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component part no]"
+                      name="Component part no"
+                      sortKeyPosition="11">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component part no]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Position]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Position]"
+                      name="Position"
+                      sortKeyPosition="13">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Position]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component ID]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[Component ID]"
+                      name="Component ID"
+                      sortKeyPosition="12">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[Component ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[File format Revision2]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort.Outputs[Sort Output].Columns[File format Revision2]"
+                      name="File format Revision2"
+                      sortKeyPosition="9">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\JEMS info source.Outputs[Excel Source Output].Columns[File format Revision2]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Merge Join\Sort 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Merge Join\Sort 1.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[EMS internal tracking ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="EMS internal tracking ID"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[Manufacturer Name]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Name"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[Manufacturer PN]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer PN"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer PN]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[Manufacturer Lot ID]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturer Lot ID"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Lot ID]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">4</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[Manufacturing date]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Manufacturing date"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturing date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">5</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Merge Join\Sort 1.Inputs[Sort Input].Columns[Supplier PO]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Supplier PO"
+                      lineageId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Supplier PO]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">6</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Merge Join\Sort 1.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[EMS internal tracking ID1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[EMS internal tracking ID1]"
+                      name="EMS internal tracking ID1"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[EMS internal tracking ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Name1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Name1]"
+                      name="Manufacturer Name1"
+                      sortKeyPosition="2">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer PN1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer PN1]"
+                      name="Manufacturer PN1"
+                      sortKeyPosition="3">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer PN]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Lot ID1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturer Lot ID1]"
+                      name="Manufacturer Lot ID1"
+                      sortKeyPosition="4">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturer Lot ID]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturing date1]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Manufacturing date1]"
+                      name="Manufacturing date1"
+                      sortKeyPosition="5">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Manufacturing date]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Supplier PO]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Merge Join\Sort 1.Outputs[Sort Output].Columns[Supplier PO]"
+                      name="Supplier PO"
+                      sortKeyPosition="6">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output].Columns[Supplier PO]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Merge Join.Paths[Excel Source Output]"
+              endId="Package\Merge Join\Sort 1.Inputs[Sort Input]"
+              name="Excel Source Output"
+              startId="Package\Merge Join\SAP info vendor source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Merge Join.Paths[Excel Source Output1]"
+              endId="Package\Merge Join\Sort.Inputs[Sort Input]"
+              name="Excel Source Output"
+              startId="Package\Merge Join\JEMS info source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Merge Join.Paths[Merge Join Output]"
+              endId="Package\Merge Join\Excel Destination.Inputs[Excel Destination Input]"
+              name="Merge Join Output"
+              startId="Package\Merge Join\Merge Join.Outputs[Merge Join Output]" />
+            <path
+              refId="Package\Merge Join.Paths[Sort Output]"
+              endId="Package\Merge Join\Merge Join.Inputs[Merge Join Left Input]"
+              name="Sort Output"
+              startId="Package\Merge Join\Sort.Outputs[Sort Output]" />
+            <path
+              refId="Package\Merge Join.Paths[Sort Output1]"
+              endId="Package\Merge Join\Merge Join.Inputs[Merge Join Right Input]"
+              name="Sort Output"
+              startId="Package\Merge Join\Sort 1.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\Merge Join"
+          TopLeft="299.874986840412,265.499997145251" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Merge Join">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Merge Join\Sort 1"
+          TopLeft="644.749980356546,202.947362334114" />
+        <NodeLayout
+          Size="192,42.6666666666667"
+          Id="Package\Merge Join\SAP info vendor source"
+          TopLeft="691.499979034068,67.9210517297492" />
+        <NodeLayout
+          Size="98.6666666666667,42.6666666666667"
+          Id="Package\Merge Join\Sort"
+          TopLeft="211.1249966193,199.289469787124" />
+        <NodeLayout
+          Size="132,42.6666666666667"
+          Id="Package\Merge Join\Merge Join"
+          TopLeft="389.374992107972,316.903502244974" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Merge Join\JEMS info source"
+          TopLeft="120.999998308719,71.7105242524121" />
+        <NodeLayout
+          Size="162.666666666667,42.6666666666667"
+          Id="Package\Merge Join\Excel Destination"
+          TopLeft="395.499982565642,487.166661385382" />
+        <EdgeLayout
+          Id="Package\Merge Join.Paths[Sort Output1]"
+          TopLeft="694.083313689879,245.614029000781">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-218.04165491524,71.2894732441933"
+              Start="0,0"
+              End="-218.04165491524,63.7894732441933">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.2614242585338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.2614242585338"
+                    Point2="0,42.2614242585338"
+                    Point3="-4,42.2614242585338" />
+                  <mssgle:LineSegment
+                    End="-214.04165491524,42.2614242585338" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-214.04165491524,42.2614242585338"
+                    Point2="-218.04165491524,42.2614242585338"
+                    Point3="-218.04165491524,46.2614242585338" />
+                  <mssgle:LineSegment
+                    End="-218.04165491524,63.7894732441933" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge Join.Paths[Sort Output]"
+          TopLeft="260.458329952633,241.956136453791">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="174.249995488672,74.9473657911833"
+              Start="0,0"
+              End="174.249995488672,67.4473657911833">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.4298755289051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.4298755289051"
+                    Point2="0,44.4298755289051"
+                    Point3="4,44.4298755289051" />
+                  <mssgle:LineSegment
+                    End="170.249995488672,44.4298755289051" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170.249995488672,44.4298755289051"
+                    Point2="174.249995488672,44.4298755289051"
+                    Point3="174.249995488672,48.4298755289051" />
+                  <mssgle:LineSegment
+                    End="174.249995488672,67.4473657911833" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge Join.Paths[Merge Join Output]"
+          TopLeft="455.374992107972,359.570168911641">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="21.458323791003,127.596492473741"
+              Start="0,0"
+              End="21.458323791003,120.096492473741">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.7982462368707" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,59.7982462368707"
+                    Point2="0,63.7982462368707"
+                    Point3="4,63.7982462368707" />
+                  <mssgle:LineSegment
+                    End="17.458323791003,63.7982462368707" />
+                  <mssgle:CubicBezierSegment
+                    Point1="17.458323791003,63.7982462368707"
+                    Point2="21.458323791003,63.7982462368707"
+                    Point3="21.458323791003,67.7982462368707" />
+                  <mssgle:LineSegment
+                    End="21.458323791003,120.096492473741" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge Join.Paths[Excel Source Output1]"
+          TopLeft="202.333331642052,114.377190919079">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="58.1249983105817,84.9122788680452"
+              Start="0,0"
+              End="58.1249983105817,77.4122788680452">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.4561394340226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.4561394340226"
+                    Point2="0,42.4561394340226"
+                    Point3="4,42.4561394340226" />
+                  <mssgle:LineSegment
+                    End="54.1249983105817,42.4561394340226" />
+                  <mssgle:CubicBezierSegment
+                    Point1="54.1249983105817,42.4561394340226"
+                    Point2="58.1249983105817,42.4561394340226"
+                    Point3="58.1249983105817,46.4561394340226" />
+                  <mssgle:LineSegment
+                    End="58.1249983105817,77.4122788680452" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge Join.Paths[Excel Source Output]"
+          TopLeft="787.499979034068,110.587718396416">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-93.4166653441885,92.3596439376979"
+              Start="0,0"
+              End="-93.4166653441885,84.8596439376979">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.1798219688489" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.1798219688489"
+                    Point2="0,46.1798219688489"
+                    Point3="-4,46.1798219688489" />
+                  <mssgle:LineSegment
+                    End="-89.4166653441885,46.1798219688489" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-89.4166653441885,46.1798219688489"
+                    Point2="-93.4166653441885,46.1798219688489"
+                    Point3="-93.4166653441885,50.1798219688489" />
+                  <mssgle:LineSegment
+                    End="-93.4166653441885,84.8596439376979" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge Join\SAP info vendor source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge Join\JEMS info source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge Join\Excel Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
